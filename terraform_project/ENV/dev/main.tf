@@ -3,6 +3,8 @@ module "vpc" {
   vpc_name = var.vpc_name
 }
 
+#azar
+
 module "subnet" {
   source = "../../Module/subnet"
   subnet_name = var.subnet_name
