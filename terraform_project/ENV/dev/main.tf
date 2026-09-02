@@ -3,9 +3,6 @@ module "vpc" {
   vpc_name = var.vpc_name
 }
 
-#azar2
-
-#webasha
 
 module "subnet" {
   source = "../../Module/subnet"
