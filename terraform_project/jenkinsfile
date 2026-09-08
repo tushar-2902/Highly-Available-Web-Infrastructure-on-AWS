@@ -6,6 +6,13 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('YOUR_SECOND_CREDENTIAL_ID')
     }
 
+  
+    stages {
+        stage('terraform') {
+            sh 'terraform version'
+        }
+    }
+
     stages {
         stage('Terraform') {
             steps {
