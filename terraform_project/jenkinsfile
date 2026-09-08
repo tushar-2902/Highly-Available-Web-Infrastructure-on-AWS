@@ -6,19 +6,33 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('YOUR_SECOND_CREDENTIAL_ID')
     }
 
-  
     stages {
-        stage('terraform') {
-            sh 'terraform version'
-        }
-    }
 
-    stages {
-        stage('Terraform') {
+        stage('Terraform Version') {
+            steps {
+                sh 'terraform version'
+            }
+        }
+
+        stage('Terraform Init') {
             steps {
                 dir('ENV/dev') {
                     sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir('ENV/dev') {
                     sh 'terraform plan'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                dir('ENV/dev') {
                     sh 'terraform apply -auto-approve'
                 }
             }
