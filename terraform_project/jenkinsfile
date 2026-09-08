@@ -1,32 +1,17 @@
 pipeline {
     agent any
 
+    tools {
+        terraform 'terraform'
+    }
+
     stages {
-
-        stage('Install Terraform') {
+        stage('Terraform') {
             steps {
-                sh '''
-                    apt-get update
-                    apt-get install -y wget unzip
-
-                    wget -q https://releases.hashicorp.com/terraform/1.13.3/terraform_1.13.3_linux_amd64.zip
-
-                    unzip -o terraform_1.13.3_linux_amd64.zip -d /usr/local/bin/
-
-                    terraform --version
-
-                    rm -f terraform_1.13.3_linux_amd64.zip
-                '''
-            }
-        }
-
-        stage('terraform') {
-            steps {
-                dir('ENV/dev') {
-                    sh 'terraform init'
-                    sh 'terraform validate'
-                    sh 'terraform plan'
-                }
+                sh 'terraform --version'
+                sh 'terraform init'
+                sh 'terraform validate'
+                sh 'terraform plan'
             }
         }
     }
