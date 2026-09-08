@@ -4,11 +4,11 @@
 
 instance_name = {
   "ec2-1" = {
-    instance_name = "ec2-1"
+    instance_name = "ankesh-1"
     
   }
-  "ec2-2" = {
-    instance_name = "ec2-2"
+  # "ec2-2" = {
+  #   instance_name = "prashant"
     
-  }
+  # }
 }
