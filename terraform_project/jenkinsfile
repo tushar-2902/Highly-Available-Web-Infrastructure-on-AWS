@@ -1,15 +1,42 @@
 pipeline {
-   agent any
+    agent any
 
-   stages {
-      stage('terraform '){
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('YOUR_FIRST_CREDENTIAL_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('YOUR_SECOND_CREDENTIAL_ID')
+    }
+
+    stages {
+
+        stage('Terraform Version') {
             steps {
-                  dir('ENV/dev') {
+                sh 'terraform version'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir('terraform_project/ENV/dev') {
                     sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir('terraform_project/ENV/dev') {
                     sh 'terraform plan'
+                }
+            }
+        }
+
+          stage('Terraform apply') {
+            steps {
+                dir('terraform_project/ENV/dev') {
                     sh 'terraform apply -auto-approve'
                 }
             }
-      }
-   }
+        }
+
+    }
 }
