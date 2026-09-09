@@ -16,7 +16,7 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                dir('ENV/dev') {
+                dir('terraform_project/ENV/dev') {
                     sh 'terraform init'
                 }
             }
