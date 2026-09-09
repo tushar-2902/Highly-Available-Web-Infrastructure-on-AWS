@@ -4,7 +4,7 @@
 
 instance_name = {
   "ec2-1" = {
-    instance_name = "ankesh-1"
+    instance_name = "azar"
     
   }
   # "ec2-2" = {
